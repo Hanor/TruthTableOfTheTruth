@@ -1,0 +1,26 @@
+.side-bar {
+    float: left;
+    height: 100%;
+    width: 100%;
+    padding-top:50px;
+    font-family: Verdana, Helvetica;
+}
+
+.side-bar-option {
+    float: left;
+    width: calc(100% - 35px);
+    height: 60px;
+    line-height: 60px;
+    color: rgba(255, 255, 255, 0.8);
+    text-align: left;
+    font-size: 14px;
+    padding-left: 35px;
+    cursor: pointer;
+    border: none;
+    box-shadow: none;
+    outline: none;
+}
+
+.side-bar-option-active {
+    border-left: 3px solid rgba(255, 45, 0, 1);
+}

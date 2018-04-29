@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { NavBarComponent } from './nav.bar.component';
+import { TruthComponent } from './truth.component';
 
-describe('Nav.BarComponent', () => {
-  let component: NavBarComponent;
-  let fixture: ComponentFixture<NavBarComponent>;
+describe('TruthComponent', () => {
+  let component: TruthComponent;
+  let fixture: ComponentFixture<TruthComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ NavBarComponent ]
+      declarations: [ TruthComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(NavBarComponent);
+    fixture = TestBed.createComponent(TruthComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

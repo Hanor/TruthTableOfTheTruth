@@ -1,3 +1,8 @@
-<p>
-  side.bar works!
-</p>
+<div class = "side-bar">
+  <div [ngClass] = "active === 'home'  ? 'side-bar-option side-bar-option-active' : 'side-bar-option'" routerLink = "/home">
+    <span class = "fa fa-home"></span> HOME
+  </div>
+  <div [ngClass] = "active === 'truth' ? 'side-bar-option side-bar-option-active' : 'side-bar-option'" routerLink = "/truth">
+    <span class = "fa fa-home"></span> TRUTH
+  </div>
+</div>

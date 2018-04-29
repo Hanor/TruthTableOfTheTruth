@@ -1,1 +1,13 @@
-/* You can add global styles to this file, and also import other style files */
+html, body {
+    float: left;
+    padding: 0px !important;
+    margin: 0px !important;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+
+@font-face {
+    font-family: paradise;
+    src: url(fonts/AnotherdayinParadise.ttf);
+}

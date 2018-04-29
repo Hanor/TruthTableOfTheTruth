@@ -3,6 +3,9 @@ import { NgModule } from '@angular/core';
 
 
 import { AppComponent } from './app.component';
+import { TruthModule } from './truth/truth.module';
+import { NavBarModule } from './nav.bar/nav.bar.module';
+import { SideBarModule } from './side.bar/side.bar.module';
 
 
 @NgModule({
@@ -10,7 +13,10 @@ import { AppComponent } from './app.component';
     AppComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    TruthModule,
+    NavBarModule,
+    SideBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

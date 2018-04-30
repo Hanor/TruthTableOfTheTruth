@@ -1,12 +1,56 @@
 .home {
     float: left;
-    width: 100%;
-    height: 100%;
-    padding: 50px;
     padding-top: 70px;
+    padding-left: 0px;
+    overflow-y: auto;
+    float: left;
+    width: calc(100% - 305px);
+    height: calc(100% - 185px);
+}
+
+.home-text {
+    float: left;
+    width: 100%;
+    min-height: 100px;
     font-size: 18px;
     color: rgba(255, 255, 255, 0.8);
     font-family: Verdana, Helvetica;
     font-weight: normal;
     text-align: center;
+}
+.home-gradle {
+    float: left;
+    width: 100%;
+    height: calc(100% - 150px);
+    padding-top: 50px;
+}
+.home-card {
+    float: left;
+    width: 150px;
+    height: 150px;
+    margin-left: calc(50vw - 250px);
+    cursor: pointer;
+    background: rgb(189, 37, 2);
+    border-radius: 4px;
+    box-shadow: 0px 0px 10px 1px rgba(44, 28, 28, 0.8)
+}
+.home-card:hover {
+    background: rgb(219, 47, 8);
+    box-shadow: 0px 0px 10px 1px rgba(85, 47, 47, 0.8)
+}
+.home-card-body {
+    float: left;
+    width: 100%;
+    height: 80px;
+    font-size: 70px;
+    text-align: center;
+    padding-top:20px;
+    color: white;
+}
+.home-card-info {
+    float: left;
+    width: 100%;
+    height: 50px;
+    text-align: center;
+    color: white;
 }

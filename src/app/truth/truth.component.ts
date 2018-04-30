@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TruthComponent implements OnInit {
 
+  typeSelected = false;
+
   constructor() { }
 
   ngOnInit() {

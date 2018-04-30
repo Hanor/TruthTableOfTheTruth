@@ -1,3 +1,20 @@
 <div class = "truth">
-  asd
+  <div *ngIf = "!typeSelected"  class = "truth-options">
+    <div class = "card" style = "border-right:1px solid rgba(255, 255, 255, 0.8);">  
+      <div class = "card-header">
+        <span class = "fa fa-tasks"></span>
+      </div>
+      <div class = "card-info">
+        From truth table
+      </div>
+    </div>
+    <div class = "card">
+      <div class = "card-header">
+        <span class = "fa fa-code"></span>
+      </div>
+      <div class = "card-info">
+        From minterms expression
+      </div>
+    </div>
+  </div>
 </div>

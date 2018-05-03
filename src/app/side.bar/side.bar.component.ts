@@ -18,9 +18,9 @@ export class SideBarComponent implements OnInit {
   ngOnInit() {
     this.router.events.subscribe(( event ) => {
       if ( event instanceof NavigationStart ) {
-        this.active = event.url.replace('/', '');
+        this.active = event.url.replace('/', '').split("#")[0];
       } else if ( event instanceof NavigationEnd ) {
-        this.active = event.urlAfterRedirects.replace('/', '');
+        this.active = event.urlAfterRedirects.replace('/', '').split("#")[0];
       }
     })
   }

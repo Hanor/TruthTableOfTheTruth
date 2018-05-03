@@ -1,20 +1,56 @@
 <div class = "truth">
-  <div *ngIf = "!typeSelected"  class = "truth-options">
-    <div class = "card" style = "border-right:1px solid rgba(255, 255, 255, 0.8);">  
-      <div class = "card-header">
-        <span class = "fa fa-tasks"></span>
-      </div>
-      <div class = "card-info">
-        From truth table
+  <div class = "truth-header" *ngIf = "truthService.inputType$.getValue() !== null">
+    <div class = "truth-option-right" (click) = "selecionado( null )">
+      Voltar
+    </div>
+  </div>
+  <div class = "truth-container">
+      <ng-template template-host></ng-template>
+  </div>
+
+
+
+  <!-- <div *ngIf = "inputType === 'expression'">
+    <div class = "truth-header">
+      <div class = "truth-option-right" (click) = "selecionada( null )">
+        Voltar
       </div>
     </div>
-    <div class = "card">
-      <div class = "card-header">
-        <span class = "fa fa-code"></span>
+    <div class = "truth-container">
+      <div class = "truth-info">
+        The truth table of the truth in this module will only work if the expression is in <b>MINTERM!</b>
       </div>
-      <div class = "card-info">
-        From minterms expression
+      <div class = "truth-body">
+        {{ inputType }}
+      </div>
+      <div class = "truth-error">
       </div>
     </div>
   </div>
+
+
+
+  <div *ngIf = "inputType === 'truth'">
+      <ng-template template-host></ng-template> -->
+    <!-- <div class = "truth-header">
+      <div class = "truth-option-right" (click) = "inputType = null">
+        Voltar
+      </div>
+    </div>
+    <div class = "truth-container">
+        <div class = "truth-info">
+          The truth table of the truth engine, will assume the las column as <b> RESULT! </b>
+        </div>
+        <div class = "truth-body">
+          <div class = "truth-table-header">
+            <div class = "tooltip truth-table-header-add" title = "add variable">
+              <span class = "fa fa-plus"></span>
+              <span class = "tooltiptext truth-tooltip"> add variable </span>
+            </div>
+          </div>
+        </div>
+        <div class = "truth-error">
+        </div>
+      </div>
+  </div> -->
 </div>

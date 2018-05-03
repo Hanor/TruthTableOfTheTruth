@@ -2,45 +2,76 @@
     float: left;
     width: calc(100% - 300px);
     height: calc(100% - 180px);
-    padding: 50px;
-    padding-top: 70px;
+    padding-top: 10px;
     font-size: 18px;
     color: rgba(255, 255, 255, 0.8);
     font-family: Verdana, Helvetica;
     font-weight: normal;
 }
-.truth-options {
+.truth-header {
     float: left;
-    margin-left: calc(50vw - 450px);
-    margin-top: calc(50vh - 250px);
-    width: 500px;
-    height: 300px;
+    width: 100%;
+    height: 100px;
 }
-.card {
+.truth-container {
     float: left;
-    width: 200px;
-    height: 200px;
-    margin-left: 10px;
-    margin-right: 10px;
-    padding-top: 30px;
-    padding-bottom: 30px;
+    width: 100%;
+    height: calc( 100% - 100px);
+}
+
+.truth-option-right {
+    float: right;
+    width: 100px;
+    height: 50px;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 14px;
     cursor: pointer;
 }
-.card:hover {
+
+.truth-option-right:hover {
     text-shadow: 0px 0px 15px rgba(255, 255, 255, 0.5);
 }
-.card-header{
+
+.truth-info {
     float: left;
-    text-align: center;
     width: 100%;
-    height: 150px;
-    font-size: 80px;
-    line-height: 150px;
+    height: 50px;
+    font-size: 12px;
+    color:rgba(245, 182, 10, 0.8);
 }
-.card-info{
+
+.truth-body {
     float: left;
-    text-align: center;
     width: 100%;
-    height: 20px;
+    min-height:200px;
+    font-size: 12px;
+    color:rgba(255, 255, 255, 0.8);
+}
+
+.truth-error {
+    float: left;
+    width: 100%;
+    height: 50px;
     font-size: 14px;
+    color: rgba(245, 57, 10, 0.8);
+    font-weight: bold;
+}
+
+
+.truth-table-header {
+    float: left;
+    width: auto;
+    height: 60px;
+}
+
+.truth-input {
+    float: left;
+    background: none;
+    border: none;
+    box-shadow: none;
+    width: 50px;
+    height: 50px;
+    color: rgba(255, 255, 255, 0.8);
+    outline: none;
+    text-align: center;
 }

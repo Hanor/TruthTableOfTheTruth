@@ -4,14 +4,26 @@
     height: 60px;
 }
 
-.nav-bar-system-name{
+.nav-bar-system-name {
     float: left;
     padding-left: 20px;
-    width: 300px;
+    width: 250px;
     height: 100%;
     text-align: center;
-    font-size: 35px;
+    font-size: 20px;
     line-height: 60px;
     color: rgba(255, 45, 0, 1);
+    font-family: Verdana;
+}
+
+.nav-bar-system-version {
+    float: left;
+    width: 150px;
+    height: 100%;
+    padding-left: 10px;
+    padding-top: 7px;
+    color: rgb(0, 81, 255);
     font-family: paradise;
+    line-height: 50px;
+    font-size: 20px;
 }

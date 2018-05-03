@@ -1,0 +1,24 @@
+<div class = "truth-info">
+  The truth table of the truth engine, will assume the las column as <b> RESULT! </b>
+</div>
+<div class = "truth-body">
+  <div class = "truth-table">
+      <div class = "truth-table-row" *ngFor = "let variable of variables">
+        <div class = "truth-table-column">
+          <input class = "truth-input" type = "text" [value] = "variable.name" readonly>
+          <span class = "fa fa-trash truth-remove"></span>
+          <span class = "fa fa-pencil truth-edit"></span>
+        </div>
+      </div>
+      <div class = "truth-table-add">
+        <div #edit = "no" class = "tooltip add-button" (click) = "addNewVariable()">
+          <div *ngIf = "edit === no">
+            <span class = "fa fa-plus"></span>
+            <span class = "tooltiptext truth-tooltip"> add variable </span>
+          </div>
+        </div>
+      </div>
+  </div>
+  <div class = "truth-error">
+  </div>
+</div>

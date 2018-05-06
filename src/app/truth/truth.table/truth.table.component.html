@@ -1,24 +1,46 @@
-<div class = "truth-info">
-  The truth table of the truth engine, will assume the las column as <b> RESULT! </b>
-</div>
 <div class = "truth-body">
   <div class = "truth-table">
-      <div class = "truth-table-row" *ngFor = "let variable of variables">
-        <div class = "truth-table-column">
-          <input class = "truth-input" type = "text" [value] = "variable.name" readonly>
-          <span class = "fa fa-trash truth-remove"></span>
-          <span class = "fa fa-pencil truth-edit"></span>
+    <div class = "truth-table-row" style = "border-bottom: none">
+      <div class = "truth-table-column truth-table-column-header" *ngFor = "let variable of variables; let i = index">
+        <div class = "truth-table-row">
+          <input #in class = "truth-input truth-input-header" type = "text" [value] = "variable.name" [readonly] = "!editing" (click) = "canEdit()" (focusout) = "editEnd($event, i)">
+          <span *ngIf = "variables.length > 1" class = "fa fa-trash truth-remove" (click) = "removeVariable(i)"></span>
         </div>
       </div>
-      <div class = "truth-table-add">
-        <div #edit = "no" class = "tooltip add-button" (click) = "addNewVariable()">
-          <div *ngIf = "edit === no">
+      <div class = "truth-table-column truth-table-column-header">
+        <div class = "truth-table-row">
+          <input class = "truth-input truth-input-header" type = "text" [value] = "result.name">
+        </div>
+      </div>
+      <div class = "truth-table-column truth-table-add" style = "border-right: none; border-bottom:none">
+        <div class = "add-button" *ngIf = "newVariable">
+          <input #in class = "truth-input" type = "text" placeholder = "new var" (focusout)="haveNewVariable(in.value.trim())" (keyup.enter)="haveNewVariable(in.value.trim())" autofocus> 
+        </div>
+        <div class = "tooltip add-button">
+          <div *ngIf = "!newVariable" (click) = "addVariable()">
             <span class = "fa fa-plus"></span>
             <span class = "tooltiptext truth-tooltip"> add variable </span>
           </div>
+          <div *ngIf = "newVariable" (click) = "newVariable = false">
+            <span class = "fa fa-close"></span>
+            <span class = "tooltiptext truth-tooltip"> cancel </span>
+          </div>
         </div>
       </div>
-  </div>
-  <div class = "truth-error">
+    </div>
+    <div class = "truth-table-row truth-table-row-scrollable">
+        <div class = "truth-table-column" *ngFor = "let variable of variables; let i = index">
+          <div class = "truth-table-row" style = "border-bottom: 1px dashed rgba(255, 255, 255, 0.8)" *ngFor = "let binary of variable.binaries;">
+            {{ binary }}
+          </div>
+        </div>
+        <div class = "truth-table-column">
+          <div class = "truth-table-row" style = "border-bottom: 1px dashed rgba(255, 255, 255, 0.8)" *ngFor = "let binary of binaries | async">
+            <input class = "truth-input truth-input-header" type = "text"  [value] = "binary.number" (change) = "resultEdit($event, binary)">
+          </div>
+        </div>
+    </div>
+    <div class = "truth-error">
+    </div>
   </div>
 </div>

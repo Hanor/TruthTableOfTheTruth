@@ -55,7 +55,7 @@ export class TruthTableComponent implements OnInit {
     }
     const values = [];
     for( let i = 0; i < binaries; i++) {
-      values.push({indice: i, number: 1, expression: ""});
+      values.push({indice: i, number: 0, expression: ""});
     }
     this.result.binaries.next(values);
   }
@@ -70,12 +70,27 @@ export class TruthTableComponent implements OnInit {
     }, 100)
   }
 
+  minExpressionForLine( indice ) {
+    let expression = "";
+    const binary = this.binaries.getValue()[indice];
+    for ( let variable of this.variables ) {
+      let argument = (variable.binaries[ indice ] == "1") ? variable.name : ("!" + variable.name);
+      expression += (expression != "") ? ("." + argument)  : argument
+    }
+    binary.expression = expression;
+  }
+
   resultEdit( event, binary ) {
-    const value =  event.target.value;
-    if ( value != 0 && value != 1 ) {
+    const value =  (event.target.value).toLowerCase();
+    if ( value == "" || ( value != 0 && value != 1 && value != "x" )) {
       event.target.value = binary.number
     } else {
-      binary.number = value;  
+      binary.number = value;
+      if ( value == 1 ) {
+        this.minExpressionForLine( binary.indice );
+      } else {
+        binary.expression = "";
+      }
     }
   }
 

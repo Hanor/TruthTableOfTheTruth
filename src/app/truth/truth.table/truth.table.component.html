@@ -34,9 +34,18 @@
             {{ binary }}
           </div>
         </div>
-        <div class = "truth-table-column">
-          <div class = "truth-table-row" style = "border-bottom: 1px dashed rgba(255, 255, 255, 0.8)" *ngFor = "let binary of binaries | async">
-            <input class = "truth-input truth-input-header" type = "text"  [value] = "binary.number" (change) = "resultEdit($event, binary)">
+        <div class = "truth-table-column" style = "width:150px; border:none;"> 
+          <div class = "truth-table-row" style = "border:none" *ngFor = "let binary of binaries | async">
+            <div class = "truth-table-column" style = "width:50px;">
+              <div class = "truth-table-row" style = "border-bottom: 1px dashed rgba(255, 255, 255, 0.8)">
+                <input class = "truth-input truth-input-header" type = "text"  [value] = "binary.number" (keyup.enter)="resultEdit($event, binary)" (focusout) = "resultEdit($event, binary)">
+              </div>
+            </div>
+            <div *ngIf = "binary.expression != ''" class = "truth-table-column" style = "width:auto; border:none; margin-left: 15px; color: rgba(11, 206, 53, 0.932);">
+              <div class = "truth-table-row" style = "border: none">
+                <span class = "fa fa-chevron-right"></span>  {{ binary.expression }}
+              </div>
+            </div>
           </div>
         </div>
     </div>

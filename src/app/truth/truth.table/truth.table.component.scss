@@ -1,4 +1,6 @@
 @import "../truth.component.scss";
+
+
 .truth-table {
     float: left;
     height: 100%;
@@ -12,7 +14,7 @@
     height: auto;
 }
 .truth-table-row-scrollable {
-    height: calc(100% - 30px);
+    height: calc(100% - 110px);
     overflow-y: auto;
     width: 100%;
 }
@@ -24,14 +26,13 @@
     min-height: 50px;
     text-align: center;
     line-height: 50px;
-    border-right: 1px dashed rgba(255, 255, 255, 0.8);
-    border-bottom: 1px dashed rgba(255, 255, 255, 0.8);
+    border-right: 1px dashed $border-color;
     cursor: text;
 }
 
 .truth-table-column-header {
-    border-bottom: 1px solid rgba(11, 206, 53, 0.932);
-    border-right: 1px solid rgba(11, 206, 53, 0.932);
+    border-bottom: 1px solid $boder-live;
+    border-right: 1px solid $boder-live;
 }
 .truth-table-add {
     float: left;
@@ -46,14 +47,13 @@
     height: 50px;
     text-align: center;
     line-height: 50px;
-    border: 1px dashed rgba(255, 255, 255, 0.4);
-    color: rgba(255, 255, 255, 0.4);
+    border: 1px dashed $border-color;
+    color: $text-color-alive;
     font-size: 16px;
     cursor: pointer;
 }
 .add-button:hover {
-    border: 1px dashed rgba(255, 255, 255, 0.8);
-    color: rgba(255, 255, 255, 0.8);
+    color: $text-color
 }
 
 .tooltip {
@@ -65,7 +65,7 @@
     visibility: hidden;
     width: 120px;
     background-color: #555;
-    color: #fff;
+    color: $text-color;
     text-align: center;
     border-radius: 6px;
     padding: 5px 0;
@@ -86,7 +86,7 @@
     margin-left: -5px;
     border-width: 5px;
     border-style: solid;
-    border-color: #555 transparent transparent transparent;
+    border-color: $tooltip-color transparent transparent transparent;
 }
 
 .tooltip:hover .tooltiptext {
@@ -108,7 +108,7 @@
 }
 
 .truth-remove:hover {
-    color: rgba(206, 11, 11, 0.932);
+    color: $text-danger;
 }
 
 .truth-edit {
@@ -120,15 +120,24 @@
 }
 
 .truth-edit:hover {
-    color: rgba(11, 206, 53, 0.932);
+    color: $edit-color;
 }
 .truth-input-header {
     font-weight: bold;
     cursor: pointer;
     line-height: 20px;
     height: 40px;
-    color: rgba(11, 206, 53, 0.932);
+    color: $text-live;
 }
 .truth-input-header:hover {
-    text-shadow: 0px 0px 25px rgba(255, 255, 255, 0.8);
+    text-shadow: 0px 0px 25px $border-color;
+}
+
+.truth-table-expression {
+    width:auto; 
+    border:none;
+    margin-left: 15px; 
+    color: $text-live;
+    font-size: 18px;
+    font-weight: normal;
 }

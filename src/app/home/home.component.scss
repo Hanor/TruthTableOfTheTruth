@@ -1,3 +1,5 @@
+@import "../app.component.scss";
+
 .home {
     float: left;
     padding-top: 70px;
@@ -13,7 +15,7 @@
     width: 100%;
     min-height: 100px;
     font-size: 18px;
-    color: rgba(255, 255, 255, 0.8);
+    color: $text-color;
     font-family: Verdana, Helvetica;
     font-weight: normal;
     text-align: center;
@@ -28,14 +30,14 @@
     float: left;
     width: 150px;
     height: 150px;
-    margin-left: calc(50vw - 250px);
+    margin-left: calc(50vw - 330px);
     cursor: pointer;
-    background: rgb(189, 37, 2);
+    background: $item-color;
     border-radius: 4px;
     box-shadow: 0px 0px 10px 1px rgba(44, 28, 28, 0.8)
 }
 .home-card:hover {
-    background: rgb(219, 47, 8);
+    background: $item-color-hover;
     box-shadow: 0px 0px 10px 1px rgba(85, 47, 47, 0.8)
 }
 .home-card-body {

@@ -1,1 +1,33 @@
+$border-color:rgba(255, 255, 255, 0.8);
+$boder-live: rgba(11, 206, 53, 0.932);
+$text-color: rgba(255, 255, 255, 0.8);
+$text-color-alive: rgba(255, 255, 255, 0.4);
+$tooltip-color: rgba(255, 255, 255, 0.8);
+$text-danger:rgba(206, 11, 11, 0.932);
+$edit-color: rgba(11, 206, 53, 0.932);
+$text-live: rgba(11, 206, 53, 0.932);
+$text-shadow-color: rgba(255, 255, 255, 0.8);
+$text-warning:rgba(245, 182, 10, 0.8);
 
+$text-color-label: rgba(17, 128, 192, 0.932);
+
+$item-color: rgba(51, 130, 194, 0.932);
+$item-color-hover: rgba(54, 157, 241, 0.932);
+
+$side-bar-item-color: rgba(46, 140, 216, 0.932);
+$side-bar-item-color-hover: rgba(46, 140, 216, 0.932);
+
+$version-color: rgba(38, 212, 255, 0.932);
+
+
+$nav-bar-background: rgba(0, 0, 0, 0.9);
+$nav-bar-boxshadow:rgba(38, 212, 255, 1);
+$container-background: rgba(0, 1, 12, 0.8);
+$side-bar-background: rgba(0, 1, 12, 0.8);
+
+.ui-container {
+    float: left;
+    background: $container-background;
+    width: calc(100% - 200px);
+    height: calc(100% - 60px);
+}

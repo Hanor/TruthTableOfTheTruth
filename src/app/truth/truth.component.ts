@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, ComponentFactoryResolver, OnDestroy } from '@angular/core';
 import { TemplateDirective } from '../shared/template.directive';
-import { BehaviorSubject, Subscription } from 'rxJs';
+import { BehaviorSubject, Subscription } from 'rxjs';
 import { TruthService } from './truth.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { TruthExpressionComponent } from './truth.expression/truth.expression.component';

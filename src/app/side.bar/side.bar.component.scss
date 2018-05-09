@@ -1,9 +1,12 @@
+@import "../app.component.scss";
+
 .side-bar {
     float: left;
     height: calc(100% - 110px);
     width: 200px;
     padding-top:50px;
     font-family: Verdana, Helvetica;
+    background: $side-bar-background;
 }
 
 .side-bar-option {
@@ -11,7 +14,7 @@
     width: calc(100% - 35px);
     height: 60px;
     line-height: 60px;
-    color: rgba(255, 255, 255, 0.8);
+    color: $text-color;
     text-align: left;
     font-size: 14px;
     padding-left: 20px;
@@ -22,11 +25,11 @@
 }
 
 .side-bar-option-active {
-    border-left: 3px solid rgba(255, 45, 0, 1);
+    border-left: 3px solid $side-bar-item-color;
 }
 
 .side-bar-option-active > span {
-    color: rgba(255, 45, 0, 1);
+    color: $side-bar-item-color-hover;
 }
 
 .side-bar-span {

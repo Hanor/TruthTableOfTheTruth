@@ -1,10 +1,11 @@
+@import "../app.component.scss";
+
 .truth {
     float: left;
-    width: calc(100% - 300px);
-    height: calc(100% - 180px);
-    padding-top: 10px;
+    width: calc(100%);
+    height: calc(100%);
     font-size: 18px;
-    color: rgba(255, 255, 255, 0.8);
+    color: $text-color;
     font-family: Verdana, Helvetica;
     font-weight: normal;
 }
@@ -12,24 +13,26 @@
     float: left;
     width: 100%;
     height: 25px;
+    padding-top: 20px;
+
 }
 .truth-container {
     float: left;
     width: 100%;
-    height: calc( 100% - 25px);
+    height: calc( 100% - 100px);
 }
 
 .truth-option-right {
     float: right;
     width: 100px;
     height: 50px;
-    color: rgba(255, 255, 255, 0.8);
-    font-size: 14px;
+    color: $text-color;
+    font-size: 16px;
     cursor: pointer;
 }
 
 .truth-option-right:hover {
-    text-shadow: 0px 0px 15px rgba(255, 255, 255, 0.5);
+    text-shadow: 0px 0px 15px $text-shadow-color;
 }
 
 .truth-info {
@@ -37,7 +40,7 @@
     width: 100%;
     height: 24px;
     font-size: 12px;
-    color:rgba(245, 182, 10, 0.8);
+    color:$text-warning;
 }
 
 .truth-body {
@@ -46,7 +49,7 @@
     min-height: 200px;
     height: calc( 100% );
     font-size: 12px;
-    color:rgba(255, 255, 255, 0.8);
+    color: $text-color;
     padding-top: 10px
 }
 
@@ -55,7 +58,7 @@
     width: 100%;
     height: 50px;
     font-size: 14px;
-    color: rgba(245, 57, 10, 0.8);
+    color: $text-danger;
     font-weight: bold;
 }
 
@@ -73,7 +76,7 @@
     box-shadow: none;
     width: 50px;
     height: 50px;
-    color: rgba(255, 255, 255, 0.8);
+    color: $text-color;
     outline: none;
     text-align: center;
 }

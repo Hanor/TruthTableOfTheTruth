@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { BehaviorSubject } from 'rxJs';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-truth.table',
@@ -82,7 +82,7 @@ export class TruthTableComponent implements OnInit {
 
   resultEdit( event, binary ) {
     const value =  (event.target.value).toLowerCase();
-    if ( value == "" || ( value != 0 && value != 1 && value != "x" )) {
+    if ( value == "" || ( value != "0" && value != "1" && value != "x" )) {
       event.target.value = binary.number
     } else {
       binary.number = value;

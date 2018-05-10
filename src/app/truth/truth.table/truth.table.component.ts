@@ -8,12 +8,13 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class TruthTableComponent implements OnInit {
   @ViewChild("result") divAddVariable: ElementRef;
-  variables = [];
   binaries: BehaviorSubject<Array<any>> = new BehaviorSubject(new Array());
+  editing = false;
+  finalExpression = null;
+  newVariable = false;
   result = { name: "result", binaries: this.binaries };
   resultWasEdited = false;
-  newVariable = false;
-  editing = false;
+  variables = [];
   constructor() { }
 
   ngOnInit() {
@@ -53,11 +54,19 @@ export class TruthTableComponent implements OnInit {
         variable.binaries.push(( rest % 2 === 0 ) ? 0 : 1);
       }
     }
-    const values = [];
+    const newValues = [];
+    const oldValues = this.result.binaries.getValue();
     for( let i = 0; i < binaries; i++) {
-      values.push({indice: i, number: 0, expression: ""});
+      let oldValue = oldValues[i];
+      if ( oldValue && oldValue.number == "1" ) {
+        newValues.push( oldValue );
+        this.minExpressionForLine( oldValue );
+      } else {
+        newValues.push({indice: i, number: 0, expression: ""});
+      }
     }
-    this.result.binaries.next(values);
+    this.result.binaries.next(newValues);
+    this.minExpression();
   }
 
   haveNewVariable( value ) {
@@ -70,14 +79,23 @@ export class TruthTableComponent implements OnInit {
     }, 100)
   }
 
-  minExpressionForLine( indice ) {
+  minExpressionForLine( line ) {
     let expression = "";
-    const binary = this.binaries.getValue()[indice];
     for ( let variable of this.variables ) {
-      let argument = (variable.binaries[ indice ] == "1") ? variable.name : ("!" + variable.name);
+      let argument = (variable.binaries[ line.indice ] == "1") ? variable.name : ("!" + variable.name);
       expression += (expression != "") ? ("." + argument)  : argument
     }
-    binary.expression = expression;
+    line.expression = expression;
+  }
+
+  minExpression() {
+    this.finalExpression = "";
+    for ( let binary of this.binaries.getValue() ) {
+      if ( binary.expression ) {
+        this.finalExpression += "( "+ binary.expression +" ) + "
+      }
+    }
+    this.finalExpression = this.finalExpression.replace(/ \+ $/g, "");
   }
 
   resultEdit( event, binary ) {
@@ -87,10 +105,11 @@ export class TruthTableComponent implements OnInit {
     } else {
       binary.number = value;
       if ( value == 1 ) {
-        this.minExpressionForLine( binary.indice );
+        this.minExpressionForLine( binary );
       } else {
         binary.expression = "";
       }
+      this.minExpression();
     }
   }
 

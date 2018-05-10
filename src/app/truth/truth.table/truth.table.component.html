@@ -1,53 +1,65 @@
 <div class = "truth-body">
   <div class = "truth-table">
-    <div class = "truth-table-row" style = "border-bottom: none">
-      <div class = "truth-table-column truth-table-column-header" *ngFor = "let variable of variables; let i = index">
-        <div class = "truth-table-row">
-          <input #in class = "truth-input truth-input-header" type = "text" [value] = "variable.name" [readonly] = "!editing" (click) = "canEdit()" (focusout) = "editEnd($event, i)">
-          <span *ngIf = "variables.length > 1" class = "fa fa-trash truth-remove" (click) = "removeVariable(i)"></span>
-        </div>
-      </div>
-      <div class = "truth-table-column truth-table-column-header">
-        <div class = "truth-table-row">
-          <input class = "truth-input truth-input-header" type = "text" [value] = "result.name">
-        </div>
-      </div>
-      <div class = "truth-table-column truth-table-add" style = "border-right: none; border-bottom:none">
-        <div class = "add-button" *ngIf = "newVariable">
-          <input #in class = "truth-input" type = "text" placeholder = "new var" (focusout)="haveNewVariable(in.value.trim())" (keyup.enter)="haveNewVariable(in.value.trim())" autofocus> 
-        </div>
-        <div class = "tooltip add-button">
-          <div *ngIf = "!newVariable" (click) = "addVariable()">
-            <span class = "fa fa-plus"></span>
-            <span class = "tooltiptext truth-tooltip"> add variable </span>
-          </div>
-          <div *ngIf = "newVariable" (click) = "newVariable = false">
-            <span class = "fa fa-close"></span>
-            <span class = "tooltiptext truth-tooltip"> cancel </span>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class = "truth-table-row truth-table-row-scrollable">
-        <div class = "truth-table-column" *ngFor = "let variable of variables; let i = index">
-          <div class = "truth-table-row" style = "border-bottom: 1px dashed rgba(255, 255, 255, 0.8)" *ngFor = "let binary of variable.binaries;">
-            {{ binary }}
-          </div>
-        </div>
-        <div class = "truth-table-column" style = "width:150px; border:none; height:auto;"> 
-          <div class = "truth-table-row" style = "border:none;" *ngFor = "let binary of binaries | async">
-            <div class = "truth-table-column" style = "width:50px; height: 51px;">
-              <div class = "truth-table-row" style = "border-bottom: 1px dashed rgba(255, 255, 255, 0.8)">
-                <input class = "truth-input truth-input-header" type = "text"  [value] = "binary.number" (keyup.enter)="resultEdit($event, binary)" (focusout) = "resultEdit($event, binary)">
-              </div>
+    <div class = "truth-table-row">
+      <div class = "truth-table-column" style = "height:100%; width:auto; border: none;">
+        <div class = "truth-table-row" style = "border-bottom: none">
+          <div class = "truth-table-column truth-table-column-header" *ngFor = "let variable of variables; let i = index">
+            <div class = "truth-table-row">
+              <input #in class = "truth-input truth-input-header" type = "text" [value] = "variable.name" [readonly] = "!editing" (click) = "canEdit()" (focusout) = "editEnd($event, i)">
+              <span *ngIf = "variables.length > 1" class = "fa fa-trash truth-remove" (click) = "removeVariable(i)"></span>
             </div>
-            <div *ngIf = "binary.expression != ''" class = "truth-table-column truth-table-expression">
-              <div class = "truth-table-row" style = "border: none">
-                <span class = "fa fa-chevron-right" style = "font-size: 12px;"></span>  {{ binary.expression }}
+          </div>
+          <div class = "truth-table-column truth-table-column-header">
+            <div class = "truth-table-row">
+              <input class = "truth-input truth-input-header" type = "text" [value] = "result.name">
+            </div>
+          </div>
+          <div class = "truth-table-column truth-table-add" style = "border-right: none; border-bottom:none">
+            <div class = "add-button" *ngIf = "newVariable">
+              <input #in class = "truth-input" type = "text" placeholder = "new var" (focusout)="haveNewVariable(in.value.trim())" (keyup.enter)="haveNewVariable(in.value.trim())" autofocus> 
+            </div>
+            <div class = "tooltip add-button">
+              <div *ngIf = "!newVariable" (click) = "addVariable()">
+                <span class = "fa fa-plus"></span>
+                <span class = "tooltiptext truth-tooltip"> add variable </span>
+              </div>
+              <div *ngIf = "newVariable" (click) = "newVariable = false">
+                <span class = "fa fa-close"></span>
+                <span class = "tooltiptext truth-tooltip"> cancel </span>
               </div>
             </div>
           </div>
         </div>
+        <div class = "truth-table-row truth-table-row-scrollable">
+          <div class = "truth-table-column" *ngFor = "let variable of variables; let i = index">
+            <div class = "truth-table-row" style = "border-bottom: 1px solid rgba(255, 255, 255, 0.8)" *ngFor = "let binary of variable.binaries;">
+              {{ binary }}
+            </div>
+          </div>
+          <div class = "truth-table-column" style = "width:150px; border:none; height:auto;"> 
+            <div class = "truth-table-row" style = "border:none;" *ngFor = "let binary of binaries | async">
+              <div class = "truth-table-column" style = "width:50px; height: 51px;">
+                <div class = "truth-table-row" style = "border-bottom: 1px solid rgba(255, 255, 255, 0.8);">
+                  <input class = "truth-input truth-input-header" type = "text"  [value] = "binary.number" (keyup.enter)="resultEdit($event, binary)" (focusout) = "resultEdit($event, binary)">
+                </div>
+              </div>
+              <div *ngIf = "binary.expression != ''" class = "truth-table-column truth-table-expression">
+                <div class = "truth-table-row" style = "border: none">
+                  <span class = "fa fa-chevron-right" style = "font-size: 12px;"></span>  {{ binary.expression }}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class = "truth-table-column" style = "width:auto; height:auto; border: none;">
+        <div *ngIf = "finalExpression != ''" class = "truth-table-row">
+          <b> The resultant expression</b>
+        </div>
+        <div class = "truth-table-row">
+          {{ finalExpression }}
+        </div>
+      </div>
     </div>
     <div class = "truth-error">
     </div>

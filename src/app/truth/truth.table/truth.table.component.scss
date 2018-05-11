@@ -1,43 +1,104 @@
 @import "../truth.component.scss";
 
 
-.truth-table {
+.truth-variables {
     float: left;
-    height: 100%;
-    width: 100%;
-}
-.truth-table-row {
-    float: left;
-    position: relative;
-    width: 100%;
-    min-height: 50px;
     height: auto;
+    width: 50px;
+    margin-top: 50px;
 }
-.truth-table-row-scrollable {
-    height: calc(100% - 110px);
-    overflow-y: auto;
-    width: 100%;
+.truth-expression {
+    float: left;
+    height: auto;
+    width: auto;
+    padding-left: 20px;
 }
 
-.truth-table-column {
+.truth-variables-names {
     float: left;
-    position: relative;
+    height: 50px;
+    width: auto;
+}
+.truth-variable-name {
+    float: left;
+    height: 50px;
     width: 50px;
-    min-height: 50px;
     text-align: center;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 50px;
+    border-bottom: 1px solid $border-live;
+    border-right: 1px solid $border-live;
+    color: $text-live
+}
+.truth-variable-name > span {
+    color: $text-color;
+}
+.truth-variables-values {
+    float: left;
+    height: auto;
+    width: 50px;
+}
+.truth-variable-value {
+    float: left;
+    height: auto;
+    width: 50px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: normal;
     line-height: 50px;
     border-right: 1px solid $border-color;
-    cursor: text;
+    border-bottom: 1px solid $border-color;
+    color: $text-color;
 }
 
-.truth-table-column-header {
-    border-bottom: 1px solid $boder-live;
-    border-right: 1px solid $boder-live;
+.truth-variable-result-value {
+    float: left;
+    height: auto;
+    width: 150px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 50px;
+    color: $text-color;
 }
+.truth-variable-result-value-line {
+    border-right: 1px solid $border-color;
+    border-bottom: 1px solid $border-color;
+    float: left;
+    height: 50px;
+    width: 50px;
+}
+
+.truth-variable-result-value-line-expression {
+    float: left;
+    margin-left: 10px;
+}
+
+.truth-variable-result-value-line-expression > .fa {
+    color: $text-live;
+}
+
+.truth-variable-add {
+    float: left;
+    height: 50px;
+    width: auto;
+    text-align: center;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 50px;
+    color: $text-color;
+    margin-left: 5px;
+}
+.truth-input-active {
+    color: $text-live;
+    width:50px;
+}
+
 .truth-table-add {
     float: left;
     position: relative;
-    width: 140px;
+    width: 120px;
     height: 50px;
     padding-left: 10px;
 }
@@ -102,13 +163,13 @@
 .truth-remove {
     float: left;
     font-size: 12px;
-    margin-top: -60px;
-    margin-left: 10px;
+    margin-top: -10px;
+    margin-left: -40px;
     cursor: pointer;
 }
 
 .truth-remove:hover {
-    color: $text-danger;
+    color: $text-danger !important;
 }
 
 .truth-edit {
@@ -121,23 +182,4 @@
 
 .truth-edit:hover {
     color: $edit-color;
-}
-.truth-input-header {
-    font-weight: bold;
-    cursor: pointer;
-    line-height: 20px;
-    height: 40px;
-    color: $text-live;
-}
-.truth-input-header:hover {
-    text-shadow: 0px 0px 25px $border-color;
-}
-
-.truth-table-expression {
-    width:auto; 
-    border:none;
-    margin-left: 15px; 
-    color: $text-live;
-    font-size: 18px;
-    font-weight: normal;
 }

@@ -1,12 +1,10 @@
 <div class = "ui-container">
-  <div class = "truth">
-    <div class = "truth-header" *ngIf = "truthService.inputType$.getValue() !== null">
-      <div class = "truth-option-right" (click) = "selecionado( null )">
-        Voltar
-      </div>
+  <div class = "truth-options" *ngIf = "truthService.inputType$.getValue() !== null">
+    <div class = "truth-option-right" (click) = "selecionado( null )">
+      Voltar
     </div>
-    <div class = "truth-container">
-        <ng-template template-host></ng-template>
-    </div>
+  </div>
+  <div class = "truth-container">
+      <ng-template template-host></ng-template>
   </div>
 </div>

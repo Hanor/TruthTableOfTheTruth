@@ -1,5 +1,6 @@
 $border-color:rgba(255, 255, 255, 0.8);
 $border-live: rgba(11, 206, 53, 0.932);
+$border-unlive: rgba(0, 0, 0, 0.9);
 $text-color: rgba(255, 255, 255, 0.8);
 $text-color-alive: rgba(255, 255, 255, 0.4);
 $tooltip-color: rgba(255, 255, 255, 0.8);
@@ -24,6 +25,9 @@ $nav-bar-background: rgba(0, 0, 0, 0.9);
 $nav-bar-boxshadow:rgba(38, 212, 255, 1);
 $container-background: rgba(0, 1, 12, 0.8);
 $side-bar-background: rgba(0, 1, 12, 0.8);
+
+$truth-table-text-color: rgba(255, 255, 255, 0.8);
+$truth-table-background-color: rgba(21, 116, 194, 0.932);
 
 .ui-container {
     float: left;

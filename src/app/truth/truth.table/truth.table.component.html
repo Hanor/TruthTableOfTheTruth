@@ -3,7 +3,9 @@
     <div class = "truth-variables-names">
       <div class = "truth-variable-name">
         <input #in class = "truth-input truth-input-active" type = "text" [value] = "variable.name" [readonly] = "!editing" (click) = "canEdit()" (focusout) = "editEnd($event, i)">
-        <span *ngIf = "variables.length > 1" class = "fa fa-trash truth-remove" (click) = "removeVariable(i)"></span>
+        <span *ngIf = "variables.length > 1" class = "tooltip fa fa-trash truth-remove" (click) = "removeVariable(i)">
+        <span class = "tooltiptext truth-tooltip" style = "margin-top: -10px"> remove </span>
+        </span>
       </div>
     </div>
     <div class = "truth-variables-values">
@@ -19,7 +21,7 @@
       </div>
     </div>
     <div class = "truth-variables-values">
-      <div class = "truth-variable-result-value" style="height:50px;" *ngFor = "let line of result.lines | async;">
+      <div class = "truth-variable-result-value" *ngFor = "let line of result.lines | async;">
         <div class = "truth-variable-result-value-line">
           <input class = "truth-input truth-input-header" type = "text"  [value] = "line.number" (keyup.enter)="resultEdit($event, line)" (focusout) = "resultEdit($event, line)">
         </div>
@@ -45,8 +47,14 @@
     </div>
   </div>
   <div class= "truth-expression" *ngIf = "finalExpression != ''">
-    <b> The resultant expression</b><br><br>
-    {{ finalExpression }}
+    <div class = "truth-expression-header">
+      <label> The resultant expression</label>
+    </div>
+    <div class = "truth-expression-body">
+      <div class = "truth-expression-final">
+        {{ finalExpression }}
+      </div>
+    </div>
   </div>
   <div class = "truth-error">
   </div>

@@ -35,7 +35,7 @@ export class Compiler  {
             }
             father = father.child;
         } while ( father )
-        return this.simplifyExpression( final.replace(/\+ $/g, ''));
+        return this.simplifyMinTermsExpression( final.replace(/\+ $/g, ''));
     }
     mcKluskey( expression ) {
         let minTermsFragments: Array<MinTermFragment> = [];
@@ -120,10 +120,44 @@ export class Compiler  {
             }
         })
     }
-    simplifyExpression( expression ) {
+    simplifyMinTermsExpression( expression ) {
         if ( expression === '' )
             return '1';
-        return expression;
+        
+        const fragments = expression.split("+");
+        expression = "";
+        for ( let i = 0; i < fragments.length; i++ ) {
+            let fragmentParsed = fragments[i].replace(/(\( | \))/g, '');
+            let clonesLenght = this.findAndRemoveClones( fragmentParsed, fragments, i );
+            i-= clonesLenght;
+            
+            //indice = this.simplifyExpressionFindXOR( fragmentParsed, fragments, i );
+        }
+        for ( let fragment of fragments ) {
+            expression+= fragment + " + "
+        }
+        return expression.replace(/\+ $/g, '');
     }
-
+    findAndRemoveClones( fragment, fragments, start ) {
+        let clones = [];
+        for ( let i = start+1; i < fragments.length; i++ ) {
+            let fragmentParsed = fragments[i].replace(/(\( | \))/g, '');
+            if ( fragment === fragmentParsed ) {
+                clones.push( i );
+            }
+        }
+        clones.sort((a, b) => 1);
+        for ( let i = 0; i < clones.length; i++ ) {
+            fragments.splice( clones[i], 1 );
+        }
+        return clones.length;
+    }
+    simplifyExpressionFindXOR( fragment, fragments, start ) {
+        if ( fragment.length % 2 == 0 ) {
+            
+        }
+        for ( let i = start+1; i < fragments.length; i++ ) {
+            let fragmentParsed = fragments[i].replace(/(\( | \))/g, '');
+        }
+    }
 }

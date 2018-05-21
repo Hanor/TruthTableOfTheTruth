@@ -1,25 +1,36 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { Component, OnInit, ViewChild, ElementRef, OnDestroy } from '@angular/core';
+import { BehaviorSubject, Subscription } from 'rxjs';
+import { Compiler } from '../../compiler/compiler';
+import { McKluskeyResolver } from '../../shared/mc.kluskey';
 
 @Component({
   selector: 'app-truth.table',
   templateUrl: './truth.table.component.html',
   styleUrls: ['./truth.table.component.scss']
 })
-export class TruthTableComponent implements OnInit {
+export class TruthTableComponent implements OnInit, OnDestroy {
   @ViewChild("result") divAddVariable: ElementRef;
-  lines$: BehaviorSubject<Array<any>> = new BehaviorSubject(new Array());
   editing = false;
-  finalExpression = null;
+  expression$: BehaviorSubject<String> = new BehaviorSubject(null);
+  lines$: BehaviorSubject<Array<any>> = new BehaviorSubject(new Array());
   newVariable = false;
   result = { name: "result", lines: this.lines$ };
   resultWasEdited = false;
   variables = [];
-  constructor() { }
+  compiler = new Compiler();
+  subscriptions: Array<Subscription> = [];
+  constructor(  ) { }
 
   ngOnInit() {
     this.variables.push({ name: "A" });
     this.generateBinaries();
+    this.mcKluskeyExpression();
+    this.minTermsCompiler();
+  }
+  ngOnDestroy() {
+    for(let subscription of this.subscriptions) {
+      subscription.unsubscribe();
+    }
   }
 
   addVariable() {
@@ -28,6 +39,14 @@ export class TruthTableComponent implements OnInit {
 
   canEdit() {
     this.editing = true
+  }
+
+  minTermsCompiler() {
+    this.subscriptions.push(this.expression$.subscribe(( expression ) => {
+      if ( expression  ) {
+        this.compiler.mcKluskey( expression );
+      }
+    }))
   }
 
   editEnd(evento, i) {
@@ -79,6 +98,15 @@ export class TruthTableComponent implements OnInit {
     }, 100)
   }
 
+  mcKluskeyExpression() {
+    // this.subscriptions.push(this.compiler.mcKluskeyResolvedArray$.subscribe(( mcKluskeyResolver: Array<McKluskeyResolver> ) => {
+    //   if ( mcKluskeyResolver ) {
+    //     const finalExpression = this.compiler.buildMcKluskeyFinalExpression( mcKluskeyResolver[0] );
+    //     console.log( finalExpression );
+    //   }
+    // }))
+  }
+
   minExpressionForLine( line ) {
     let expression = "";
     for ( let variable of this.variables ) {
@@ -89,13 +117,13 @@ export class TruthTableComponent implements OnInit {
   }
 
   minExpression() {
-    this.finalExpression = "";
+    let expression = "";
     for ( let line of this.lines$.getValue() ) {
       if ( line.expression ) {
-        this.finalExpression += "( "+ line.expression +" ) + "
+        expression += "( "+ line.expression +" ) + "
       }
     }
-    this.finalExpression = this.finalExpression.replace(/ \+ $/g, "");
+    this.expression$.next( expression.replace(/ \+ $/g, "") );
   }
 
   resultEdit( event, line ) {

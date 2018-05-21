@@ -1,60 +1,74 @@
 <div class = "truth-body">
-  <div class = "truth-variables" *ngFor = "let variable of variables; let i = index">
-    <div class = "truth-variables-names">
-      <div class = "truth-variable-name">
+  <div class = "truth-table">
+    <div class = "truth-table-header">
+      <div class = "truth-table-header-variable-name" *ngFor = "let variable of variables; let i = index">
         <input #in class = "truth-input truth-input-active" type = "text" [value] = "variable.name" [readonly] = "!editing" (click) = "canEdit()" (focusout) = "editEnd($event, i)">
         <span *ngIf = "variables.length > 1" class = "tooltip fa fa-trash truth-remove" (click) = "removeVariable(i)">
-        <span class = "tooltiptext truth-tooltip" style = "margin-top: -10px"> remove </span>
+          <span class = "tooltiptext truth-tooltip" style = "margin-top: -10px"> remove </span>
         </span>
       </div>
-    </div>
-    <div class = "truth-variables-values">
-      <div class = "truth-variable-value" *ngFor = "let line of variable.lines;">
-        {{ line }}
-      </div>
-    </div>
-  </div>
-  <div class = "truth-variables">
-    <div class = "truth-variables-names">
-      <div class = "truth-variable-name">
+      <div class = "truth-table-header-variable-name">
         {{ result.name }}
       </div>
-    </div>
-    <div class = "truth-variables-values">
-      <div class = "truth-variable-result-value" *ngFor = "let line of result.lines | async;">
-        <div class = "truth-variable-result-value-line">
-          <input class = "truth-input truth-input-header" type = "text"  [value] = "line.number" (keyup.enter)="resultEdit($event, line)" (focusout) = "resultEdit($event, line)">
+      <div class = "truth-option">
+        <div class = "truth-add-input" *ngIf = "newVariable">
+          <input #in class = "truth-input" type = "text" placeholder = "new var" (focusout)="haveNewVariable(in.value.trim())" (keyup.enter)="haveNewVariable(in.value.trim())" autofocus> 
         </div>
-        <div class = "truth-variable-result-value-line-expression" *ngIf = "line.expression != ''">
-          <span class = "fa fa-chevron-right" style = "font-size: 12px;"></span>  {{ line.expression }}
+        <div class = "tooltip truth-add-button">
+          <div *ngIf = "!newVariable" (click) = "addVariable()">
+            <span class = "fa fa-plus"></span>
+            <span class = "tooltiptext truth-tooltip"> add variable </span>
+          </div>
+          <div *ngIf = "newVariable" (click) = "newVariable = false">
+            <span class = "fa fa-close"></span>
+            <span class = "tooltiptext truth-tooltip"> cancel </span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class = "truth-table-body">
+      <div class = "truth-table-values" *ngFor = "let variable of variables; let i = index">
+        <div class = "truth-table-value" *ngFor = "let line of variable.lines">
+          <div class = "truth-table-value-line">
+            {{ line }}
+          </div>
+        </div>
+      </div>
+      <div class = "truth-table-values" style = "width: 200px;">
+        <div class = "truth-table-value" style = "width: 200px;" *ngFor = "let line of result.lines | async;">
+          <div class = "truth-table-value-line">
+            <input class = "truth-input truth-input-header" type = "text"  [value] = "line.number" (keyup.enter)="resultEdit($event, line)" (focusout) = "resultEdit($event, line)">
+          </div>
+          <div class = "truth-table-value-line-expression" *ngIf = "line.expression != ''">
+            <span class = "fa fa-chevron-right" style = "font-size: 12px;"></span>  {{ line.expression }}
+          </div>
         </div>
       </div>
     </div>
   </div>
-  <div class = "truth-variable-add">
-    <div class = "add-button" *ngIf = "newVariable">
-      <input #in class = "truth-input" type = "text" placeholder = "new var" (focusout)="haveNewVariable(in.value.trim())" (keyup.enter)="haveNewVariable(in.value.trim())" autofocus> 
-    </div>
-    <div class = "tooltip add-button">
-      <div *ngIf = "!newVariable" (click) = "addVariable()">
-        <span class = "fa fa-plus"></span>
-        <span class = "tooltiptext truth-tooltip"> add variable </span>
+  <div class= "truth-expression" *ngIf = "expression$.getValue()">
+    <div class = "truth-expression-section">
+      <div class = "truth-expression-label">
+        <label> The truth table expression</label>
       </div>
-      <div *ngIf = "newVariable" (click) = "newVariable = false">
-        <span class = "fa fa-close"></span>
-        <span class = "tooltiptext truth-tooltip"> cancel </span>
+      <div class = "truth-expression-value">
+        {{ expression$.getValue() }}
       </div>
     </div>
-  </div>
-  <div class= "truth-expression" *ngIf = "finalExpression != ''">
-    <div class = "truth-expression-header">
-      <label> The resultant expression</label>
-    </div>
-    <div class = "truth-expression-body">
-      <div class = "truth-expression-final">
-        {{ finalExpression }}
+    <div class = "truth-expression-section">
+      <div class = "truth-expression-label">
+        <label> The mc kluskey simplification expression</label>
+      </div>
+      <div class = "truth-expression-value" *ngFor = "let resolved of this.compiler.mcKluskeyResolvedArray$ | async">
+        <div class = "truth-expression-mc-kluskey-fragment" *ngFor = "let fragment of resolved.fragments">
+          <div class = "truth-expression-mc-kluskey-fragment-name">
+              <span *ngFor = "let variable of fragment.variables"> {{ variable }} </span> <span *ngFor = "let value of fragment.values"> {{ value }} </span><span>{{ fragment.name }}</span>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-  <div class = "truth-error">
-  </div>
+</div>
+<div class = "truth-final-result" *ngIf = "this.compiler.mcKluskeyResolved$.getValue()">
+  <span class = "truth-final-method-name">MC-KLUSKEY </span><span class = "truth-final-result-text">RESULT </span><span class = "fa fa-chevron-right truth-final-result-text" style = "font-size: 12px;"></span> {{ this.compiler.buildMcKluskeyFinalExpression() }}
+</div>

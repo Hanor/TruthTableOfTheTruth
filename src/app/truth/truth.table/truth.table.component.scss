@@ -178,9 +178,11 @@
 
 .truth-expression-value {
     width: 100%;
+    max-width: 800px;
     height: auto;
     line-height: 30px;
     font-size: 12px;
+    word-wrap: break-word;
 }
 
 .truth-expression-mc-kluskey-fragment {

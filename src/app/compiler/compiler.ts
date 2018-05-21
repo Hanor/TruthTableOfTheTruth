@@ -127,21 +127,26 @@ export class Compiler  {
         const fragments = expression.split("+");
         expression = "";
         for ( let i = 0; i < fragments.length; i++ ) {
-            let fragmentParsed = fragments[i].replace(/(\( | \))/g, '');
-            let clonesLenght = this.findAndRemoveClones( fragmentParsed, fragments, i );
-            i-= clonesLenght;
+            let fragment = fragments[i];
+            let fragmentParsed = fragment.replace(/(\( | \))/g, '').trim();
+            let clonesLength = this.findAndRemoveClones( fragmentParsed, fragments, i );
+            let foundXNOR = this.findAndSimplifyXNOR( fragmentParsed, fragments, i );
+            let foundXOR = this.findAndSimplifyXOR( fragmentParsed, fragments, i );
             
+            if ( clonesLength > 0 || foundXNOR || foundXOR) {
+                i--;
+            }
             //indice = this.simplifyExpressionFindXOR( fragmentParsed, fragments, i );
         }
-        for ( let fragment of fragments ) {
-            expression+= fragment + " + "
+        for( let fragment of fragments ) {
+            expression += fragment + '+ ';
         }
         return expression.replace(/\+ $/g, '');
     }
     findAndRemoveClones( fragment, fragments, start ) {
         let clones = [];
         for ( let i = start+1; i < fragments.length; i++ ) {
-            let fragmentParsed = fragments[i].replace(/(\( | \))/g, '');
+            let fragmentParsed = fragments[i].replace(/(\( | \))/g, '').trim();
             if ( fragment === fragmentParsed ) {
                 clones.push( i );
             }
@@ -152,12 +157,43 @@ export class Compiler  {
         }
         return clones.length;
     }
-    simplifyExpressionFindXOR( fragment, fragments, start ) {
-        if ( fragment.length % 2 == 0 ) {
+    findAndSimplifyXNOR( source, fragments, start ) {
+        let value = (source[0] === '!') ? 0 : 1;
+        let xnors = [];
+        for (let i = 1; i < source.length; i++) {
+            let symbol = (source[i] === '!') ? 0 : 1;
+            if ( value !== symbol ) {
+                return false;
+            }
+        }
+        for (let i = start+1; i < fragments.length; i++) {
+            let fragment = fragments[i];
+            let xor = true;
+            for( let j = 0; j < fragment.length; j++)     {
+                let symbol = (source[i] === '!') ? 0 : 1;
+                if ( value === symbol ) {
+                    xor = false;
+                    break;
+                }
+            }
+            if ( xor ) {
+                fragments.splice(i, 0);
+                let xorExpression = '';
+                for( let variable of fragments[start]) {
+                    xorExpression += variable +" XNOR ";
+                }
+                fragments[start] = xorExpression.replace(/XNOR $/g, '');
+                return true;
+            }
+        }
+    }
+    findAndSimplifyXOR( fragment, fragments, start ) {
+        return false;
+        // if ( fragment.length % 2 == 0 ) {
             
-        }
-        for ( let i = start+1; i < fragments.length; i++ ) {
-            let fragmentParsed = fragments[i].replace(/(\( | \))/g, '');
-        }
+        // }
+        // for ( let i = start+1; i < fragments.length; i++ ) {
+        //     let fragmentParsed = fragments[i].replace(/(\( | \))/g, '');
+        // }
     }
 }

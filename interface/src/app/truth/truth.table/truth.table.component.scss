@@ -80,6 +80,7 @@
     width: 50px;
     height: 50px;
     border: 1px dashed $border-color;
+    background: $container-background;
 }
 .truth-add-button {
     float: left;
@@ -91,6 +92,7 @@
     text-align: center;
     color: $text-color-alive;
     cursor: pointer;
+    background: $container-background;
 }
 .truth-add-button:hover {
     color: $text-color;
@@ -162,6 +164,7 @@
     max-height: calc(100% - 20px);
     overflow-y: auto;
     padding-left: 20px;
+    padding-right: 10px;
 }
 
 .truth-expression-section {
@@ -184,17 +187,53 @@
     font-size: 12px;
     word-wrap: break-word;
 }
-
-.truth-expression-mc-kluskey-fragment {
+.truth-expression-mc-cluskey-level {
+    float: left;
+    border: 1px solid $text-color-label;
+    text-align: center;
     width: 100%;
-    height: 25px;
+    max-height: 15px;
+    line-height: 15px;
+    font-weight: bold;
 }
-.truth-expression-mc-kluskey-fragment-values {
-    width: auto;
-    height: 25px;
+.truth-expression-mc-cluskey-fragment {
+    float: left;
+    width: 100%;
+    min-height: 25px;
+    height: auto;
+    text-align: center;
+    border: 1px solid $text-color-label;
+    border-top: none;
+    word-wrap: break-word;
 }
-
+.truth-expression-mc-cluskey-fragment-name {
+    float: left;
+    width: calc(30% - 2px);
+    height: 100%;
+    line-height: 20px;
+    border-right: 1px solid $text-color-label;
+    word-wrap: break-word;
+}
+.truth-expression-mc-cluskey-fragment-value {
+    float: left;
+    width: calc(40% - 2px);
+    height: 100%;
+    line-height: 20px;
+    word-wrap: break-word;
+}
+.truth-expression-mc-cluskey-fragment-variable {
+    float: left;
+    width: calc(30% - 2px);
+    height: 100%;
+    line-height: 20px;
+    border-right: 1px solid $text-color-label;
+    word-wrap: break-word;
+}
 .truth-final-result {
     float: left;
     width: 100%;
+}
+
+.truth-compiler {
+    margin-top: 5px;
 }

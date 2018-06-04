@@ -1,6 +1,6 @@
 # TruthTableOfTruth
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.7.3.
+This project was generated with [Angular CLI]
 
 ## To prepare the environment
 
@@ -10,9 +10,13 @@ To run this project it's necessary install some things, like:
 - Second we need the NPM to install the angular-cli, in the last's nodejs versions have the NPM then you dont need to install. To test if you have the NPM you just need run the command a terminal: npm -v;
 - Third we need to install the angular-cli and for that just run the command: npm install -g @angular/cli
 
+## To Acess
+
+The application can be accessed in https://truth4.herokuapp.com/
+
 ## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:1101/`. The app will automatically reload if you change any of the source files.
+Run `ng serve` for a dev server. Navigate to `http://localhost:80/`. The app will automatically reload if you change any of the source files.
 
 ## Code scaffolding
 

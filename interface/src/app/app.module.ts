@@ -8,6 +8,7 @@ import { TruthModule } from './truth/truth.module';
 import { NavBarModule } from './nav.bar/nav.bar.module';
 import { HomeModule } from './home/home.module';
 import { SideBarModule } from './side.bar/side.bar.module';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { SideBarModule } from './side.bar/side.bar.module';
     TruthModule,
     NavBarModule,
     AppRoutingModule,
-    SideBarModule
+    SideBarModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

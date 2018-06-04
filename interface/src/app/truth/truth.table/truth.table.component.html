@@ -55,20 +55,35 @@
         {{ expression$.getValue() }}
       </div>
     </div>
-    <div class = "truth-expression-section">
+    <div class = "truth-expression-section" *ngIf = "evaluating">
       <div class = "truth-expression-label">
-        <label> The mc kluskey simplification expression</label>
+        <label> The Mc Cluskey simplification expression</label>
       </div>
-      <div class = "truth-expression-value" *ngFor = "let resolved of this.compiler.mcKluskeyResolvedArray$ | async">
-        <div class = "truth-expression-mc-kluskey-fragment" *ngFor = "let fragment of resolved.fragments">
-          <div class = "truth-expression-mc-kluskey-fragment-name">
-              <span *ngFor = "let variable of fragment.variables"> {{ variable }} </span> <span *ngFor = "let value of fragment.values"> {{ value }} </span><span>{{ fragment.name }}</span>
+      <div class = "truth-expression-value" *ngFor = "let resolved of mcCluskeyResolved?.solution">
+        <div class = "truth-expression-mc-cluskey-level">
+          Level - {{ resolved.level }}
+        </div>
+        <div class = "truth-expression-mc-cluskey-fragment" *ngFor = "let fragment of resolved.fragments">
+          <div class = "truth-expression-mc-cluskey-fragment-name">
+            {{ fragment.name }}
+          </div>
+          <div class = "truth-expression-mc-cluskey-fragment-variable">
+            {{ fragmentVariables( fragment ) }}
+          </div>
+          <div class = "truth-expression-mc-cluskey-fragment-value">
+            {{ fragment.valuesAsString }}
           </div>
         </div>
       </div>
+      <div class = "truth-compiler" style = "padding-bottom: 2px; margin-top: 5px;">
+        {{ status }}
+      </div>
+    </div>
+    <div class = "truth-expression-section" style = "margin-top:10px;">
+      <button (click) = "executeMcCluskey()">Evaluate</button>
     </div>
   </div>
 </div>
-<div class = "truth-final-result" *ngIf = "this.compiler.mcKluskeyResolved$.getValue()">
-  <span class = "truth-final-method-name">MC-KLUSKEY </span><span class = "truth-final-result-text">RESULT </span><span class = "fa fa-chevron-right truth-final-result-text" style = "font-size: 12px;"></span> {{ this.compiler.buildMcKluskeyFinalExpression() }}
+<div class = "truth-final-result" *ngIf = "mcCluskeyResolved">
+  <span class = "truth-final-method-name">MC-CLUSKEY </span><span class = "truth-final-result-text">RESULT </span><span class = "fa fa-chevron-right truth-final-result-text" style = "font-size: 12px;"></span> {{ mcCluskeyResolved.simplified }}
 </div>

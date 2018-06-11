@@ -109,6 +109,11 @@ export class CompilerService {
     }
     isFragmentPassibleToXor( variables ) {
         let passibleVariable;
+
+        if ( variables.length <= 1 )  {
+            return null;
+        }
+
         for ( let variable of variables ) {
             if ( variable[0] == '!' ) {
                 if ( !passibleVariable ) {
@@ -219,7 +224,6 @@ export class CompilerService {
     }
     simplifyMinTermsExpression( fragments ) {
         let simplified;
-        console.log(fragments)
         let i = 0;
         do {
             let passablesToSimplify = this.fragmentsPassablesToSimplify( fragments );

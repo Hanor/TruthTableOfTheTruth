@@ -1,6 +1,7 @@
 import {Config} from './config/config.mjs'
 import {Server} from './server/server.mjs'
 import {Api} from './core/api.mjs'
+import {CompilerService} from './compiler/compiler.service.mjs'
 
 class System {
     constructor() {}

@@ -2,9 +2,9 @@
     "name": "truth-table-of-truth",
     "version": "0.0.1",
     "license": "MIT",
-    "main": "engine/System.mjs",
+    "main": "engine/system.mjs",
     "scripts": {
-        "start": "npm install -g @angular/cli && cd interface && ng build && cd ../backend && node --experimental-modules main.mjs"
+        "start": "npm install -g @angular/cli && cd interface && ng build && cd ../engine && node --experimental-modules main.mjs"
     },
     "author": "Hanor Sátiro Cintra",
     "dependencies": {

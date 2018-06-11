@@ -45,6 +45,9 @@ export class CompilerService {
         }
         return fragments;
     }
+    filterFragmentsWithoutXorAndXnor( fragments ) {
+        return fragments.filter((termFragment) => !termFragment.fragment.includes('XOR') && !termFragment.fragment.includes('XNOR'));
+    }
     fragmentsPassablesToSimplify( fragments ) {
         let passablesToSimplify = [];
         for ( let fragment of fragments ) {
@@ -57,9 +60,9 @@ export class CompilerService {
     fragmentsPassibleToXnor( fragments ) {
         let fragmentsPassables = [];
 
-        for( let i = 0; i < fragments.length; i++) {
+        for ( let i = 0; i < fragments.length; i++) {
             let termFragment = fragments[i];
-            let isOne = this.isFragmentPassibleToXnor( termFragment.fragment.split(/\.| [XNOR] | [XOR] /g) );
+            let isOne = this.isFragmentPassibleToXnor( termFragment.fragment.split(/\./g) );
             
             if ( isOne != -2 ) {
                 if ( isOne == 1 ) {
@@ -70,6 +73,20 @@ export class CompilerService {
             }
         }
         return fragmentsPassables;
+    }
+    fragmentsPassibleToXor( fragments ) {
+        let fragmentsPassables = [];    
+
+        for ( let i = 0; i < fragments.length; i++ ) {
+            let termFragment = fragments[i];
+            let variable = this.isFragmentPassibleToXor( termFragment.fragment.split(/\./g) );
+
+            if ( variable ) {
+                fragmentsPassables.push({ variablesAsModule: termFragment.variablesAsModule, indice: i, termFragment: termFragment, negatedVariable: variable }) 
+            }
+        }
+
+        return fragmentsPassables
     }
     isFragmentPassibleToXnor( variables ) {
         let isOne = -1;
@@ -89,6 +106,19 @@ export class CompilerService {
             }
         }
         return isOne;
+    }
+    isFragmentPassibleToXor( variables ) {
+        let passibleVariable;
+        for ( let variable of variables ) {
+            if ( variable[0] == '!' ) {
+                if ( !passibleVariable ) {
+                    passibleVariable = variable[1];
+                } else {
+                    return null;
+                }
+            }
+        }
+        return passibleVariable;
     }
     mcCluskey( expression ) {
         const expressionFragments = this.buildMinTermsExpression( expression );
@@ -116,6 +146,7 @@ export class CompilerService {
             }
             father = father.child;
         } while ( father )
+        
         resolved.expression = this.buildExpression( termFragments );
         if ( resolved.expression !== '1' ) {
             termFragments = this.simplifyMinTermsExpression( termFragments );
@@ -188,11 +219,16 @@ export class CompilerService {
     }
     simplifyMinTermsExpression( fragments ) {
         let simplified;
+        console.log(fragments)
         let i = 0;
         do {
-            simplified = 0;
             let passablesToSimplify = this.fragmentsPassablesToSimplify( fragments );
+            
+            simplified = 0;
             simplified += this.simplifyMinTermsExpressionClone( passablesToSimplify, fragments );
+
+            passablesToSimplify = this.filterFragmentsWithoutXorAndXnor( passablesToSimplify );
+
             simplified += this.simplifyMinTermsExpressionXor( passablesToSimplify, fragments );
             simplified += this.simplifyMinTermsExpressionXnor( passablesToSimplify, fragments );
             i++;
@@ -222,7 +258,7 @@ export class CompilerService {
         let fragmentsPassables = this.fragmentsPassibleToXnor( fragmentsToSimplify );
         for ( let i = 0; i < fragmentsPassables.length; i++ ) {
             let passableOne = fragmentsPassables[i];
-            for ( let j = (i+1); j < fragmentsPassables.length; j++ ) {
+            for ( let j = ( i+1 ); j < fragmentsPassables.length; j++ ) {
                 let passableTwo = fragmentsPassables[j];
                 if ( passableOne.variablesAsModule === passableTwo.variablesAsModule &&  passableOne.xnor !== passableTwo.xnor ) {
                     
@@ -241,6 +277,33 @@ export class CompilerService {
     }
     simplifyMinTermsExpressionXor( fragmentsToSimplify, fragments ) {
         let simplified = 0;
+        let fragmentsPassables = this.fragmentsPassibleToXor( fragmentsToSimplify );
+        for ( let i = 0; i < fragmentsPassables.length; i++ ) {
+            let passableOne = fragmentsPassables[i];
+            let negatedVariables = passableOne.negatedVariable +'-';
+            let passables = [ passableOne ];
+            let variables = passableOne.termFragment.fragment.split(/\./g);
+            for ( let j = ( i + 1 ); j < fragmentsPassables.length; j++ ) {
+                let passableTwo = fragmentsPassables[j];
+                if ( passableOne.variablesAsModule === passableTwo.variablesAsModule && !( negatedVariables.includes( passableTwo.negatedVariable ))) {
+                    passables.push( passableTwo );
+                    negatedVariables += passableTwo.negatedVariable + '-';
+                }
+            }
+            negatedVariables = negatedVariables.replace(/-$/g, '')
+
+            if ( variables.length === passables.length ) {
+                for ( let passable of passables ) {
+                    passable.termFragment.wasSimplified = true;
+                }
+
+                const xnorFragment = new TermFragment();
+                xnorFragment.fragment = passableOne.termFragment.fragment.replace(/\!|/g, '').replace(/\./g, ' XOR ');
+                xnorFragment.variablesAsString = '(' + xnorFragment.fragment + ')';
+                fragments.push( xnorFragment );
+                simplified ++;
+            }
+        }
         return simplified;
     }
 }

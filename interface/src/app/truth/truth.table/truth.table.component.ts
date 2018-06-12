@@ -43,6 +43,10 @@ export class TruthTableComponent implements OnInit {
     } else {
       evento.target.value = this.variables[i].name;
     }
+
+    for ( let line of this.lines$.getValue() ) {
+      this.minExpressionForLine( line );
+    }
     this.minExpression();
   }
   executeMcCluskey() {

@@ -36,3 +36,8 @@ $truth-table-background-color: rgb(21, 116, 194);
     width: calc(100% - 200px);
     height: calc(100% - 60px);
 }
+
+body, html {
+    min-width: 1200px !important;
+    min-height: 900px !important;
+}

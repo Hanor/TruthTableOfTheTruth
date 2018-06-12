@@ -3,14 +3,16 @@
 .truth-options {
     float: left;
     width: 100%;
-    height: 25px;
+    max-height: 50px;
     padding-top: 20px;
     font-family: Verdana;
 }
 .truth-container {
     float: left;
-    width: 100%;
-    height: calc( 100% - 100px);
+    width: calc( 100% - 50px);
+    min-height: calc( 100% - 100px);
+    padding-left: 40px;
+    padding-right: 100px;
 }
 
 .truth-option-right {

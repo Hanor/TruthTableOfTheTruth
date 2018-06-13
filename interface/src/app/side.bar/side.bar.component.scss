@@ -1,12 +1,27 @@
 @import "../app.component.scss";
 
-.side-bar {
-    float: left;
-    height: calc(100% - 110px);
-    width: 200px;
-    padding-top:50px;
-    font-family: Verdana, Helvetica;
-    background: $side-bar-background;
+@media( max-width: 999px) {
+    .side-bar {
+        float: left;
+        height: $side-bar-size-height;
+        width: $side-bar-size-width-min;
+        padding-top:50px;
+        font-family: Verdana, Helvetica;
+        background: $side-bar-background;
+    }
+    .side-bar > div > span.side-bar-option-name {
+        display: none;
+    }
+}
+@media( min-width: 1000px) {
+    .side-bar {
+        float: left;
+        height: $side-bar-size-height;
+        width: $side-bar-size-width;
+        padding-top:50px;
+        font-family: Verdana, Helvetica;
+        background: $side-bar-background;
+    }
 }
 
 .side-bar-option {

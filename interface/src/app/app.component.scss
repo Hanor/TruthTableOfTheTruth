@@ -1,3 +1,10 @@
+$nav-bar-size-height: 60px;
+$nav-bar-size-width: 100%;
+
+$side-bar-size-width: 200px;
+$side-bar-size-width-min: 50px;
+$side-bar-size-height: calc(100% - 60px - 50px);
+
 $border-color:rgba(255, 255, 255, 0.8);
 $border-live: rgba(11, 206, 53, 0.932);
 $border-unlive: rgba(0, 0, 0, 0.9);
@@ -29,15 +36,22 @@ $side-bar-background: rgb(30, 31, 39);
 $truth-table-text-color: rgba(255, 255, 255, 0.8);
 $truth-table-background-color: rgb(21, 116, 194);
 
-.ui-container {
-    float: left;
-    background: $container-background;
-    color: $text-color;
-    width: calc(100% - 200px);
-    height: calc(100% - 60px);
+@media( max-width: 999px) {
+    .ui-container {
+        float: left;
+        position: relative;
+        background: $container-background;
+        color: $text-color;
+        width: calc(100% - 50px);
+        min-height: calc(100% - 60px);
+    }
 }
-
-body, html {
-    min-width: 1200px !important;
-    min-height: 900px !important;
+@media( min-width: 1000px) {
+    .ui-container {
+        float: left;
+        background: $container-background;
+        color: $text-color;
+        width: calc(100% - 200px);
+        height: calc(100% - 60px);
+    }
 }

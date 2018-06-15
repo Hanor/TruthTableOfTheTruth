@@ -39,11 +39,10 @@ $truth-table-background-color: rgb(21, 116, 194);
 @media( max-width: 999px) {
     .ui-container {
         float: left;
-        position: relative;
         background: $container-background;
         color: $text-color;
         width: calc(100% - 50px);
-        min-height: calc(100% - 60px);
+        height: calc(100% - 60px);
     }
 }
 @media( min-width: 1000px) {

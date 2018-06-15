@@ -16,14 +16,14 @@
 @media( max-width: 999px) {
     .truth-table {
         float: left;
-        width: 100vw;
+        width: 100%;
         height: auto;
         overflow-y: auto;
         overflow-x: auto;
     }
-    .truth-table {
+    .truth-expression {
         float: left;
-        width: 100vw;
+        width: 100%;
         height: auto;
         overflow-y: auto;
         overflow-x: auto;
@@ -34,19 +34,20 @@
     .truth-table {
         float: left;
         width: auto;
-        height: 100%;
+        height: auto;
         overflow-y: auto;
         overflow-x: auto;
     }
     .truth-expression {
         float: left;
         width: auto;
-        height: 100%;
+        height: auto;
         overflow-y: auto;
         overflow-x: auto;
     }
 }
 .truth-table-header {
+    float: left;
     margin: auto;
     position: absolute;
     width: auto;

@@ -1,11 +1,24 @@
 @import "../app.component.scss";
 
-.home {
-    float: left;
-    overflow-y: auto;
-    width: calc(100% - 20px);
-    height: 100%;
-    padding-right: 10px;
+@media( max-width: 999px) {
+    .home {
+        float: left;
+        overflow-y: auto;
+        width: calc(100% - 20px);
+        height: 400px;
+        padding-top: calc( 50vh - 200px );
+        padding-right: 10px;
+    }
+}
+@media( min-width: 1000px) {
+    .home {
+        float: left;
+        overflow-y: auto;
+        width: calc(100% - 20px);
+        height: 400px;
+        padding-top: calc( 50vh - 200px );
+        margin-left: -75px;
+    }
 }
 
 .home-text {

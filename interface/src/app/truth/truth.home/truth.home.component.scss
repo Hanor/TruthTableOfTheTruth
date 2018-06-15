@@ -1,16 +1,30 @@
 @import "../truth.component.scss";
-.truth-home {
-    float: left;
-    position: relative;
-    height: 410px;
-    width: 410px;
-    padding-top: calc( 50vh - 205px );
-    padding-left: calc( 50vw - 440px );
+
+@media( max-width: 999px) {
+    .truth-home {
+        float: left;
+        position: relative;
+        height:auto;
+        width:auto;
+        padding-top: calc( 50vh - 150px );
+        padding-left: calc( 50vw - 250px );
+    }
 }
+@media( min-width: 1000px) {
+    .truth-home {
+        float: left;
+        position: relative;
+        height:auto;
+        width:auto;
+        padding-top: calc( 50vh - 150px );
+        padding-left: calc( 50vw - 440px );
+    }
+}
+
 .card {
     float: left;
-    width: 200px;
-    height: 200px;
+    width: 180px;
+    height: 180px;
     cursor: pointer;
 }
 .card:hover {

@@ -8,13 +8,17 @@ To run this project it's necessary install some things, like:
 
 - First we need the Node.Js installed, the instructions to install nodejs are in: https://nodejs.org/en/
 - Second we need the NPM to install the angular-cli, in the last's nodejs versions have the NPM then you dont need to install. To test if you have the NPM you just need run the command a terminal: npm -v;
-- Third we need to install the angular-cli and for that just run the command: npm install -g @angular/cli
 
-## To Acess
+## To Acess Or Run
 
-The application can be accessed in https://truth4.herokuapp.com/
+To acess:
+  The application can be accessed in https://truth4.herokuapp.com/
+To run:
+  Download the application and see the : To Prepare the environment in this readme, after this, you only need to execute: npm start
 
 ## Development server
+
+Need to install the angular-cli and for that just run the command: npm install -g @angular/cli
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:80/`. The app will automatically reload if you change any of the source files.
 

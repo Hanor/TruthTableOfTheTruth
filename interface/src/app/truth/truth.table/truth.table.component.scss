@@ -8,7 +8,7 @@
 .truth-final-result {
     float: left;
     width: 100%;
-    padding-top: 10px;
+    padding-top: 20px;
     height: 50px;
     overflow: auto;
 }
@@ -17,51 +17,73 @@
     .truth-table {
         float: left;
         width: 100%;
-        height: auto;
-        overflow-y: auto;
+        height: calc(100% - 40px);
+        padding-bottom:10px;
+        max-height: 100%;
         overflow-x: auto;
     }
     .truth-expression {
         float: left;
         width: 100%;
-        height: auto;
-        overflow-y: auto;
-        overflow-x: auto;
+        min-height: 200px;
+        max-height: 100%;
+        overflow: auto;
+    }
+
+    .truth-table-header {
+        float: left;
+        position: relative;
+        display: flex;
+        width: auto;
+        height: 53px;
+    }
+    .truth-table-body {
+        float: left;
+        position: relative;
+        display: flex;
+        min-width: 100%;
+        height: calc(100% - 55px);
     }
 }
 
 @media( min-width: 1000px) {
     .truth-table {
         float: left;
-        width: auto;
-        height: auto;
-        overflow-y: auto;
+        max-width: calc(50% - 300px);
+        height: calc(100% - 40px);
+        padding-bottom: 20px;
+        padding-top: 20px;
+        padding-right: 20px;
         overflow-x: auto;
     }
     .truth-expression {
         float: left;
-        width: auto;
+        max-height: calc(100% - 40px);
+        width: calc(50% - 20px);
         height: auto;
-        overflow-y: auto;
-        overflow-x: auto;
+        overflow: auto;
     }
-}
-.truth-table-header {
-    float: left;
-    margin: auto;
-    position: absolute;
-    width: auto;
-    height: 53px;
-}
-.truth-table-body {
-    width: auto;
-    height: auto;
-    padding-top:50px;
+
+    .truth-table-header {
+        float: left;
+        position: relative;
+        display: flex;
+        width: auto;
+        height: 53px;
+    }
+    .truth-table-body {
+        float: left;
+        position: relative;
+        display: flex;
+        min-width: 100%;
+        width: auto;
+        height: calc(100% - 55px);
+    }
 }
 .truth-table-values {
     float: left;
     width: 51px;
-    height: auto;
+    height: 100%;
 }
 .truth-table-value {
     float: left;
@@ -108,9 +130,9 @@
 
 .truth-option {
     float: left;
-    width: auto;
+    width: 120px;
     height: 50px;
-    padding-left: 10px;
+    padding-left: 25px;
 }
 
 .truth-add-input {
@@ -138,44 +160,6 @@
 
 .truth-input-active {
     width:50px;
-}
-
-.tooltip {
-    position: relative;
-    display: inline-block;
-}
-
-.tooltip .tooltiptext {
-    visibility: hidden;
-    width: 120px;
-    background-color: #555;
-    color: $text-color;
-    text-align: center;
-    border-radius: 2px;
-    padding: 5px 0;
-    position: absolute;
-    z-index: 1;
-    bottom: 125%;
-    left: 50%;
-    margin-left: -60px;
-    opacity: 0;
-    transition: opacity 0.3s;
-}
-
-.tooltip .tooltiptext::after {
-    content: "";
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    margin-left: -5px;
-    border-width: 5px;
-    border-style: solid;
-    border-color: $tooltip-color transparent transparent transparent;
-}
-
-.tooltip:hover .tooltiptext {
-    visibility: visible;
-    opacity: 1;
 }
 
 .truth-tooltip {

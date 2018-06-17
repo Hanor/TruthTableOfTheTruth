@@ -1,6 +1,12 @@
 $fa-font-path: "../node_modules/font-awesome/fonts";
 @import "../node_modules/font-awesome/scss/font-awesome.scss";
 
+@font-face {
+    font-family: paradise;
+    src: url(fonts/AnotherdayinParadise.ttf);
+}
+
+$body-background: rgb(30, 31, 39);
 body, html {
     padding: 0px !important;
     margin: 0px !important;
@@ -8,10 +14,6 @@ body, html {
     width: 100%;
     min-width: 500px;
     min-height: 500px;
-    overflow-y: auto
-}
-
-@font-face {
-    font-family: paradise;
-    src: url(fonts/AnotherdayinParadise.ttf);
+    overflow: auto;
+    background: $body-background;
 }
